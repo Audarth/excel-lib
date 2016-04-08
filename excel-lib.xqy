@@ -212,46 +212,6 @@ declare function excel-lib:generate-report(
   return ()
 };
 
-declare function excel-lib:generate-report-v2(
-  $template-uri,
-  $output-report-uri,
-  $results-uri,
-  $sheet-uri,
-  $matching-pattern,
-  $collections)
-{  
-  let $report-template := fn:doc($template-uri)  
-  let $uris := ooxml:package-uris($report-template)
-  let $package-parts := ooxml:package-parts($report-template)
-  
-    (:
-  let $parts :=
-    for $uri in $uris
-    return doc($uri)
-  :)
-
-  let $parts :=
-    excel-lib:process-results-for-sheet(
-      $results-uri,
-      $sheet-uri,
-      $template-uri,
-      $matching-pattern
-    )
-      
-  let $manifest :=
-    <parts xmlns="xdmp:zip">
-    {
-      for $uri in $uris
-      return <part>{$uri}</part>
-    }
-    </parts>
-  
-  let $pkg := xdmp:zip-create($manifest, $parts)
-  let $_ := xdmp:document-insert($output-report-uri, $pkg, (), $collections)
-    
-  return ()
-};
-
 declare function excel-lib:add-calc-onload($workbook) 
 {
   let $workbook := ($workbook/(self::sheet:workbook|sheet:workbook))[1]
