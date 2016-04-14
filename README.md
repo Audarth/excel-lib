@@ -23,14 +23,15 @@ We can then run the following in query console:
 
 	xquery version "1.0-ml";
 	
-	import module namespace excel-lib= "http://marklogic.com/solutions/htx/excel-lib" at "/ext/mlpm_modules/excel-lib/excel-lib.xqy";
+	import module namespace excel-lib= "http://marklogic.com/solutions/htx/excel-lib" 
+		at "/ext/mlpm_modules/excel-lib/excel-lib.xqy";
 		
 	let $REPORT_FILE := "C:/sample_template.xlsx"
 
 	let $COLLECTIONS := ("excel_files")
 		  
 	return excel-lib:load-report-template-file($REPORT_FILE, $COLLECTIONS);
-	html
+
 
 note the `$REPORT_FILE` variable that refers to the location of the template file
 
@@ -66,7 +67,8 @@ After ingesting the template and generating the data to be used in the spreadshe
 
 	xquery version "1.0-ml";
 
-	import module namespace excel-lib= "http://marklogic.com/solutions/htx/excel-lib" at "/ext/mlpm_modules/excel-lib/excel-lib.xqy";
+	import module namespace excel-lib= "http://marklogic.com/solutions/htx/excel-lib" 
+		at "/ext/mlpm_modules/excel-lib/excel-lib.xqy";
 	
 	let $REPORT_FILE := "C:/sample_template.xlsx"
 	let $COLLECTIONS := ("excel_files")
@@ -95,7 +97,8 @@ After performing the previous steps we can generate the final file using:
 
 	xquery version "1.0-ml";
 	
-	import module namespace excel-lib= "http://marklogic.com/solutions/htx/excel-lib" at "/ext/mlpm_modules/excel-lib/excel-lib.xqy";
+	import module namespace excel-lib= "http://marklogic.com/solutions/htx/excel-lib" 
+		at "/ext/mlpm_modules/excel-lib/excel-lib.xqy";
 	
 	let $REPORT_FILE := "C:/sample_template.xlsx"
 	
