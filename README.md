@@ -1,21 +1,21 @@
 # excel-lib
 XQuery library for generating excel files using MarkLogic.
 
-#### install
+### install
 
     mlpm install excel-lib
 	mlpm deploy -u <user> -p <password> -H <host> -P <port>
 
 
-##Guide
+## Guide
 
-#####Ingest the template
+### Ingest the template
 
 As a first step the users are required to ingest the template into MarkLogic. The library decomposes the template into ooxml files. Once the files are decomposed they are then organized into collection. Collections are way or organizing documents in MarkLogic and this allows users to isolate the template files from other documents in MarkLogic.
 
 The library allows users to analyze the template and its various parts. For every worksheet in the excel document there is a corresponding sheet*.xml. This document will be the primary document we will be working on for generating the report. E.g. If the users ingest a template which has 5 worksheets, once ingested, we will have access to sheet1.xml thru sheet5.xml. we would work on each of these 5 documents to pull in the data for the worksheet.
 
-#####example
+#### example
 
 Once you've deployed and installed the extension create an excel template file, a simple example can be found in the sample folder.
 
@@ -37,13 +37,13 @@ note the following:
 -  The `$REPORT_FILE` variable that refers to the location of the template file on your system
 -  The `$COLLECTIONS` variable that will be the collections assigned to the template file as well as the decomposed ooxml files ingested into marklogic
 
-#####Generate Data
+### Generate Data
 
 This is the step where we leverage MarkLogic connectors / api to generate data for the excel worksheet which will be compiled into the excel report.
 We could use either XQuery or leverage ODBC/SQL connectors to run SQL command and generate results from the SQL in a format that is required for pushing data into the excel worksheet.
 
 
-#####example
+#### example
 
 We can generate data using a range of ways but the data must obey the following criteria:
 
@@ -87,13 +87,13 @@ note the following:
 -  The `$SHEET_URI` and `$SHEET_SHORT_NAME` variables that refer to the sheet we want to use within the template file
 -  And `$DATA_FILE` that refers to the data formatted for use within the database
 
-#####Package and Dispatch
+### Package and Dispatch
 
 The library runs the code to generate data in a recursive manner for all the sheets in the workbook.
 This code is pushed on to MarkLogic task server as a scheduled task to further automate the process. 
 The task server run the code at specified time, generate the data file, Once the data file is generate the library picks up the data file and compiles an excel document. This document can then be sent to users via email using MarkLogic SMTP server support and the xdmp:email api call. 
 
-#####example
+#### example
 
 After performing the previous steps we can generate the final file using:
 
