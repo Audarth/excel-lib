@@ -32,8 +32,10 @@ We can then run the following in query console:
 		  
 	return excel-lib:load-report-template-file($REPORT_FILE, $COLLECTIONS);
 
+note the following:
 
-note the `$REPORT_FILE` variable that refers to the location of the template file
+-  The `$REPORT_FILE` variable that refers to the location of the template file on your system
+-  The `$COLLECTIONS` variable that will be the collections assigned to the template file as well as the decomposed ooxml files ingested into marklogic
 
 #####Generate Data
 
@@ -46,7 +48,7 @@ We could use either XQuery or leverage ODBC/SQL connectors to run SQL command an
 We can generate data using a range of ways but the data must obey the following criteria:
 
 - Be an xml document inside marklogic containing `<detail>` elements
-- Each cell must correspond to a detail element ie.`<detail cell="A2">Cell_Content</detail>`
+- Each excel cell must correspond to a detail element ie.`<detail cell="A2">Cell_Content</detail>`
 - The `cell="X#"` attribute must be a legal cell reference
 
 
@@ -81,7 +83,7 @@ After ingesting the template and generating the data to be used in the spreadshe
 
 note the following:
 
--  The `$REPORT_FILE` variable that refers to template file we previously ingested
+-  The `$REPORT_FILE` variable that refers to the template file we previously ingested
 -  The `$SHEET_URI` and `$SHEET_SHORT_NAME` variables that refer to the sheet we want to use within the template file
 -  And `$DATA_FILE` that refers to the data formatted for use within the database
 
@@ -110,7 +112,7 @@ After performing the previous steps we can generate the final file using:
 
 note the following:
 
--  The `$REPORT_FILE` variable that refers to template file we previously ingested
+-  The `$REPORT_FILE` variable that refers to the template file we previously ingested
 -  The `$COLLECTIONS` variable that will be the collections assigned to our final file
 -  And `$FINAL_FILE` which will be the uri of our generated excel file which will be inserted into the database for further use.
 
